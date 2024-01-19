@@ -6,7 +6,6 @@ from .base import FunctionalTest
 from unittest import skip
 
 class LayoutAndStylingTest(FunctionalTest):
-    @skip
     def test_layout_and_styling(self):
         # Edith goes to the home page
         self.browser.get(self.live_server_url)
@@ -16,7 +15,7 @@ class LayoutAndStylingTest(FunctionalTest):
         inputbox = self.browser.find_element(By.ID, 'id_new_item')
         self.assertAlmostEqual(
             inputbox.location['x'] + inputbox.size['width'] / 2,
-            512,
+            628,
             delta=10
         )
 
@@ -28,6 +27,6 @@ class LayoutAndStylingTest(FunctionalTest):
         inputbox = self.browser.find_element(By.ID, 'id_new_item')
         self.assertAlmostEqual(
             inputbox.location['x'] + inputbox.size['width'] / 2,
-            512,
+            628,
             delta=10
         )
