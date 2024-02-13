@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+from django.conf import settings
+from .management.commands.create_session import create_pre_authenticated_session
 from .server_tools import reset_database
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from selenium import webdriver
@@ -41,14 +43,14 @@ class FunctionalTest(StaticLiveServerTestCase):
                 os.makedirs(SCREEN_DUMP_LOCATION)
             for ix, handle in enumerate(self.browser.window_handles):
                 self._windowid = ix
-                self.browser.switch_to_window(handle)
+                self.browser.switch_to.window(handle)
                 self.take_screenshot()
                 self.dump_html()
         self.browser.quit()
         super().tearDown()
 
     def _test_has_failed(self):
-        return any(error for (method, error) in self._outcome.errors)
+        return any(error for (method, error) in self._outcome.result.errors)
 
     def take_screenshot(self):
         filename = self._get_filename() + '.png'
